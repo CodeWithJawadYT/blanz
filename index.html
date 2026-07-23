@@ -207,6 +207,18 @@
           clip-path: inset(0 0 0 0);
         }
       }
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-4px);
+        }
+        75% {
+          transform: translateX(4px);
+        }
+      }
 
       .reveal {
         opacity: 0;
@@ -509,6 +521,43 @@
       }
       #dayRow {
         max-width: 100%;
+        scrollbar-width: thin;
+      }
+      #dayRow::-webkit-scrollbar {
+        height: 4px;
+      }
+      #dayRow::-webkit-scrollbar-thumb {
+        background: rgba(255, 0, 60, 0.4);
+        border-radius: 99px;
+      }
+
+      /* ---------- Fluid, mobile-first type & layout polish ---------- */
+      .hero-title {
+        font-size: clamp(2.6rem, 11vw, 9rem);
+      }
+      @media (max-width: 380px) {
+        .hero-title {
+          font-size: clamp(2.2rem, 13vw, 3.2rem);
+        }
+      }
+      @media (max-width: 420px) {
+        .marquee {
+          animation-duration: 20s;
+        }
+      }
+      /* Prevent tap-highlight flash on iOS */
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+      /* Comfortable tap targets on touch */
+      @media (pointer: coarse) {
+        button,
+        .nav-link,
+        .daychip,
+        .slot {
+          min-height: 44px;
+        }
       }
     </style>
 
@@ -612,6 +661,16 @@
                   "price": "15",
                   "priceCurrency": "CAD",
                   "itemOffered": { "@type": "Service", "name": "Head Massage" }
+                },
+                {
+                  "@type": "Offer",
+                  "price": "40",
+                  "priceCurrency": "CAD",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Grooming Package",
+                    "description": "Haircut, Beard, Detan & Scrub bundled."
+                  }
                 }
               ]
             },
@@ -632,18 +691,8 @@
             "employee": [
               {
                 "@type": "Person",
-                "name": "Dilpreet P.",
-                "jobTitle": "Master Barber"
-              },
-              {
-                "@type": "Person",
-                "name": "Lucky J.",
-                "jobTitle": "Master Barber"
-              },
-              {
-                "@type": "Person",
-                "name": "Vishal D.",
-                "jobTitle": "Master Barber"
+                "name": "Bobby S.",
+                "jobTitle": "Master Barber & Founder"
               }
             ]
           }
@@ -818,12 +867,12 @@
                 >GEO · 43.68°N 79.75°W</span
               >
               <span class="chip px-3 py-1 rounded-full"
-                >LIVE · CHAIRS 03/03</span
+                >LIVE · CHAIR 01/01</span
               >
             </div>
 
             <h1
-              class="reveal mt-8 font-display font-black leading-[.86] text-[13vw] sm:text-[11vw] md:text-[10vw] lg:text-[9rem] break-words"
+              class="reveal hero-title mt-8 font-display font-black leading-[.86] break-words"
             >
               <span class="chrome-text">CUT.</span>
               <span class="chrome-text">CODE.</span><br />
@@ -850,7 +899,7 @@
                 EXPLORE MENU
               </button>
               <div
-                class="flex items-center gap-2 text-white/50 font-mono text-[11px]"
+                class="hidden sm:flex items-center gap-2 text-white/50 font-mono text-[11px]"
               >
                 <span class="kbd">B</span> quick book ·
                 <span class="kbd">M</span> menu
@@ -873,12 +922,12 @@
               <div class="glass rounded-2xl p-5">
                 <div
                   class="font-display text-3xl chrome-text scramble"
-                  data-scramble="03"
+                  data-scramble="01"
                 >
-                  03
+                  01
                 </div>
                 <div class="font-mono text-[10px] text-white/50 mt-1">
-                  MASTER BARBERS
+                  MASTER BARBER
                 </div>
               </div>
               <div class="glass rounded-2xl p-5">
@@ -911,7 +960,7 @@
             class="mt-20 overflow-hidden border-y border-white/10 py-5 bg-ink2/40"
           >
             <div
-              class="marquee whitespace-nowrap font-display text-3xl md:text-5xl chrome-text"
+              class="marquee whitespace-nowrap font-display text-2xl sm:text-3xl md:text-5xl chrome-text"
             >
               <div class="flex gap-12 pr-12">
                 <span>PB08 · BLENDZ</span><span class="text-crimson">✦</span>
@@ -963,11 +1012,11 @@
                 /03 · SIGNATURE
               </div>
               <h3 class="font-display text-2xl mt-3 chrome-text">
-                DETAN PROTOCOL
+                GROOMING PACKAGE
               </h3>
               <p class="text-white/60 mt-3">
-                Enzymatic scrub + micro-massage. A 15-minute reset for the
-                metropolitan skin.
+                The full protocol: haircut, beard, detan & scrub bundled into
+                one 90-minute session.
               </p>
             </article>
           </div>
@@ -979,7 +1028,7 @@
         >
           <div class="reveal">
             <div class="font-mono text-[10px] text-crimson">// LOCATE.NODE</div>
-            <h2 class="font-display text-5xl md:text-6xl chrome-text mt-3">
+            <h2 class="font-display text-4xl sm:text-5xl md:text-6xl chrome-text mt-3">
               4 LISA ST<br />BRAMPTON
             </h2>
             <p class="text-white/60 mt-5 max-w-md text-lg">
@@ -988,7 +1037,7 @@
               <span class="text-white">647-621-4671</span> or lock a chair
               below.
             </p>
-            <div class="mt-6 flex gap-3">
+            <div class="mt-6 flex flex-wrap gap-3">
               <a
                 href="tel:6476214671"
                 class="btn-ghost font-display text-[11px] px-6 py-3 rounded-full"
@@ -1026,7 +1075,7 @@
               <div class="font-mono text-[10px] text-crimson">
                 // DIGITAL.MENU
               </div>
-              <h2 class="font-display text-5xl md:text-7xl chrome-text mt-3">
+              <h2 class="font-display text-4xl sm:text-5xl md:text-7xl chrome-text mt-3">
                 THE MATRIX<br />OF SERVICES
               </h2>
             </div>
@@ -1071,7 +1120,7 @@
         <div class="max-w-[1400px] mx-auto px-5 md:px-10 py-16">
           <div class="text-center max-w-2xl mx-auto">
             <div class="font-mono text-[10px] text-crimson">// ELITE.PASS</div>
-            <h2 class="font-display text-5xl md:text-7xl chrome-text mt-3">
+            <h2 class="font-display text-4xl sm:text-5xl md:text-7xl chrome-text mt-3">
               MEMBERSHIP<br />PROTOCOL
             </h2>
             <p class="text-white/60 mt-5 text-lg">
@@ -1165,7 +1214,7 @@
                   );
                 "
               ></div>
-              <div class="flex justify-between items-start">
+              <div class="flex justify-between items-start gap-3">
                 <div>
                   <div class="font-mono text-[10px] text-crimson">
                     TIER · 02 · MENS ONLY
@@ -1175,7 +1224,7 @@
                   </h3>
                 </div>
                 <div
-                  class="chip px-3 py-1 rounded-full font-mono text-[10px] text-white"
+                  class="chip px-3 py-1 rounded-full font-mono text-[10px] text-white shrink-0"
                 >
                   MOST WANTED
                 </div>
@@ -1223,7 +1272,7 @@
               <div class="font-mono text-[10px] text-crimson">
                 // CORE.TERMINAL
               </div>
-              <h2 class="font-display text-4xl md:text-6xl chrome-text mt-3">
+              <h2 class="font-display text-3xl sm:text-4xl md:text-6xl chrome-text mt-3">
                 BOOKING ENGINE
               </h2>
             </div>
@@ -1246,16 +1295,22 @@
             <div class="relative">
               <!-- STEP 1 SERVICES -->
               <div class="step" data-step="1">
-                <div class="font-display text-2xl chrome-text mb-6">
+                <div class="font-display text-2xl chrome-text mb-2">
                   Choose a service
                 </div>
+                <p class="text-white/50 text-sm mb-6">
+                  Every step ahead is tailored to what you pick here — chair
+                  time, specialist and available slots all adapt to your
+                  service.
+                </p>
                 <div id="bookServices" class="grid sm:grid-cols-2 gap-4"></div>
               </div>
               <!-- STEP 2 PROFESSIONAL -->
               <div class="step hidden" data-step="2">
-                <div class="font-display text-2xl chrome-text mb-6">
-                  Choose a professional
+                <div class="font-display text-2xl chrome-text mb-2">
+                  Choose your chair
                 </div>
+                <p id="proHelper" class="text-white/50 text-sm mb-6"></p>
                 <div
                   id="bookPros"
                   class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"
@@ -1266,7 +1321,7 @@
                 <div class="font-display text-2xl chrome-text mb-2">
                   Chronos scheduler
                 </div>
-                <div class="font-mono text-[10px] text-white/50">
+                <div id="durHelper" class="font-mono text-[10px] text-white/50">
                   JULY · 2026 · BRAMPTON.LOCAL
                 </div>
                 <div
@@ -1287,7 +1342,7 @@
                 <div class="font-display text-2xl chrome-text mb-6">
                   Your ledger
                 </div>
-                <div class="glass rounded-3xl p-6">
+                <div class="glass rounded-3xl p-4 sm:p-6">
                   <div id="orderGuests" class="space-y-4"></div>
                   <button
                     id="addGuest"
@@ -1395,16 +1450,16 @@
             <div class="font-mono text-[10px] text-crimson">
               // CRAFT · CREW
             </div>
-            <h2 class="font-display text-5xl md:text-7xl chrome-text mt-3">
-              MASTERS OF<br />THE BLADE
+            <h2 class="font-display text-4xl sm:text-5xl md:text-7xl chrome-text mt-3">
+              MASTER OF<br />THE BLADE
             </h2>
             <p class="text-white/60 mt-5 text-lg">
-              Three architects. One atelier. Each chair is programmed for a
+              One architect. One atelier. Every chair is programmed to Bobby's
               signature language of grooming.
             </p>
           </div>
 
-          <div class="mt-14 grid md:grid-cols-3 gap-6">
+          <div class="mt-14 grid sm:grid-cols-1 max-w-md">
             <article class="glass rounded-3xl p-8 card-hover">
               <div
                 class="w-full aspect-[4/5] rounded-2xl mb-6"
@@ -1417,7 +1472,7 @@
                 <div
                   class="absolute inset-0 grid place-items-center font-display text-7xl chrome-text"
                 >
-                  DP
+                  BP
                 </div>
                 <div
                   class="absolute bottom-3 left-3 chip px-3 py-1 rounded-full font-mono text-[10px]"
@@ -1425,82 +1480,25 @@
                   <span class="live-dot inline-block mr-1"></span>AVAILABLE
                 </div>
               </div>
-              <div class="font-display text-2xl chrome-text">DILPREET P.</div>
+              <div class="font-display text-2xl chrome-text">BOBBY S.</div>
               <div class="font-mono text-[10px] text-crimson mt-1">
-                MASTER · FADES · SKIN TAPER
+                FOUNDER · MASTER BARBER
               </div>
               <p class="text-white/60 mt-4">
-                7+ years engineering chrome-mirror fades. Signature: the "PB08
-                Zero" — a razor-tight skin drop with sculpted crown.
-              </p>
-            </article>
-            <article class="glass rounded-3xl p-8 card-hover">
-              <div
-                class="w-full aspect-[4/5] rounded-2xl mb-6"
-                style="
-                  background: linear-gradient(135deg, #2b0a12, #450015);
-                  position: relative;
-                  overflow: hidden;
-                "
-              >
-                <div
-                  class="absolute inset-0 grid place-items-center font-display text-7xl crimson-glow"
-                >
-                  LJ
-                </div>
-                <div
-                  class="absolute bottom-3 left-3 chip px-3 py-1 rounded-full font-mono text-[10px]"
-                >
-                  <span class="live-dot inline-block mr-1"></span>AVAILABLE
-                </div>
-              </div>
-              <div class="font-display text-2xl chrome-text">LUCKY J.</div>
-              <div class="font-mono text-[10px] text-crimson mt-1">
-                ARCHITECT · BEARD · TEXTURE
-              </div>
-              <p class="text-white/60 mt-4">
-                Vector beard design and warm-towel rituals. Believes a beard is
-                code — every follicle indexed.
-              </p>
-            </article>
-            <article class="glass rounded-3xl p-8 card-hover">
-              <div
-                class="w-full aspect-[4/5] rounded-2xl mb-6"
-                style="
-                  background: linear-gradient(135deg, #0d0f14, #1c2230);
-                  position: relative;
-                  overflow: hidden;
-                "
-              >
-                <div
-                  class="absolute inset-0 grid place-items-center font-display text-7xl chrome-text"
-                >
-                  VD
-                </div>
-                <div
-                  class="absolute bottom-3 left-3 chip px-3 py-1 rounded-full font-mono text-[10px]"
-                >
-                  <span class="live-dot inline-block mr-1"></span>AVAILABLE
-                </div>
-              </div>
-              <div class="font-display text-2xl chrome-text">VISHAL D.</div>
-              <div class="font-mono text-[10px] text-crimson mt-1">
-                SPECIALIST · DETAN · SCRUB
-              </div>
-              <p class="text-white/60 mt-4">
-                Skin-forward specialist. Detan, scrub, head massage — a
-                15-minute reset dialled for the metropolitan man.
+                Engineer of chrome-mirror fades, vector beard design and skin
+                rituals. Signature: the "PB08 Zero" — a razor-tight skin drop
+                with a sculpted crown.
               </p>
             </article>
           </div>
 
           <!-- Equipment editorial -->
           <div class="mt-24 grid lg:grid-cols-3 gap-6">
-            <div class="lg:col-span-2 glass rounded-3xl p-10">
+            <div class="lg:col-span-2 glass rounded-3xl p-6 sm:p-10">
               <div class="font-mono text-[10px] text-crimson">
                 // TOOLING · ATELIER
               </div>
-              <h3 class="font-display text-4xl chrome-text mt-3">
+              <h3 class="font-display text-3xl sm:text-4xl chrome-text mt-3">
                 Chrome tools. Analog soul.
               </h3>
               <p class="text-white/60 mt-4 max-w-xl">
@@ -1520,13 +1518,13 @@
                   TOWEL TEMP
                 </div>
                 <div>
-                  <div class="chrome-text font-display text-2xl">03</div>
-                  COCKPITS
+                  <div class="chrome-text font-display text-2xl">01</div>
+                  COCKPIT
                 </div>
               </div>
             </div>
             <div
-              class="relative rounded-3xl overflow-hidden neon-border p-10"
+              class="relative rounded-3xl overflow-hidden neon-border p-8 sm:p-10"
               style="background: linear-gradient(180deg, #12000a, #0a0a0a)"
             >
               <div class="font-display text-2xl crimson-glow">ATELIER LAW</div>
@@ -1550,29 +1548,29 @@
               <div class="font-mono text-[10px] text-crimson">
                 // COMMS.TERMINAL
               </div>
-              <h2 class="font-display text-5xl md:text-7xl chrome-text mt-3">
+              <h2 class="font-display text-4xl sm:text-5xl md:text-7xl chrome-text mt-3">
                 SIGNAL<br />THE ATELIER
               </h2>
               <div class="mt-10 space-y-5">
                 <div
-                  class="glass rounded-2xl p-5 flex items-center justify-between"
+                  class="glass rounded-2xl p-5 flex items-center justify-between gap-3"
                 >
                   <div>
                     <div class="font-mono text-[10px] text-white/50">PHONE</div>
-                    <div class="font-display text-xl chrome-text">
+                    <div class="font-display text-lg sm:text-xl chrome-text">
                       647-621-4671
                     </div>
                   </div>
                   <a
                     href="tel:6476214671"
-                    class="btn-crimson font-display text-[11px] px-5 py-2.5 rounded-full"
+                    class="btn-crimson font-display text-[11px] px-5 py-2.5 rounded-full shrink-0"
                     >CALL</a
                   >
                 </div>
                 <div
-                  class="glass rounded-2xl p-5 flex items-center justify-between"
+                  class="glass rounded-2xl p-5 flex items-center justify-between gap-3"
                 >
-                  <div>
+                  <div class="min-w-0">
                     <div class="font-mono text-[10px] text-white/50">EMAIL</div>
                     <div class="font-display text-sm chrome-text break-all">
                       bobbysarai2003@gmail.com
@@ -1580,7 +1578,7 @@
                   </div>
                   <a
                     href="mailto:bobbysarai2003@gmail.com"
-                    class="btn-ghost font-display text-[11px] px-5 py-2.5 rounded-full"
+                    class="btn-ghost font-display text-[11px] px-5 py-2.5 rounded-full shrink-0"
                     >SEND</a
                   >
                 </div>
@@ -1588,7 +1586,7 @@
                   <div class="font-mono text-[10px] text-white/50">
                     LOCATION
                   </div>
-                  <div class="font-display text-xl chrome-text">
+                  <div class="font-display text-lg sm:text-xl chrome-text">
                     4 Lisa Street · Brampton, ON
                   </div>
                   <div
@@ -1598,7 +1596,7 @@
                   </div>
                 </div>
                 <div
-                  class="glass rounded-2xl p-5 grid grid-cols-7 gap-2 text-center font-mono text-[10px]"
+                  class="glass rounded-2xl p-5 grid grid-cols-7 gap-1 sm:gap-2 text-center font-mono text-[9px] sm:text-[10px]"
                 >
                   <div>
                     <div class="text-white/50">MON</div>
@@ -1632,7 +1630,7 @@
               </div>
             </div>
 
-            <form id="contactForm" class="glass rounded-3xl p-8">
+            <form id="contactForm" class="glass rounded-3xl p-6 sm:p-8">
               <div class="font-display text-2xl chrome-text">
                 Async formulation
               </div>
@@ -1695,10 +1693,10 @@
           <img
             src="/pb08-logo.jpg"
             alt="PB08 BLENDZ"
-            class="w-24 h-24 rounded-full ring-1 ring-white/10 mb-6"
+            class="w-20 h-20 sm:w-24 sm:h-24 rounded-full ring-1 ring-white/10 mb-6"
           />
           <div
-            class="font-display text-5xl sm:text-6xl chrome-text leading-none"
+            class="font-display text-4xl sm:text-5xl md:text-6xl chrome-text leading-none"
           >
             PB08<br />BLENDZ
           </div>
@@ -1751,56 +1749,114 @@
       /* =========================================================
    PB08 BLENDZ · Cyber-Luxury SPA controller (vanilla JS)
    ========================================================= */
+
+      /* Each service carries a duration (minutes) and a category tag.
+   The category tag drives which downstream booking options (chair /
+   specialist framing + how many chronos slots are exposed) appear —
+   a haircut behaves differently from a full chair/package booking. */
       const SERVICES = [
         {
           id: "haircut",
           name: "Hair Cut",
           dur: "30 min",
+          minutes: 30,
           price: 20,
           icon: "✂",
+          category: "hair",
         },
-        { id: "beard", name: "Beard", dur: "30 min", price: 10, icon: "𓂀" },
+        {
+          id: "beard",
+          name: "Beard",
+          dur: "30 min",
+          minutes: 30,
+          price: 10,
+          icon: "𓂀",
+          category: "beard",
+        },
         {
           id: "both",
           name: "Hair Cut & Beard",
           dur: "1 hr",
+          minutes: 60,
           price: 25,
           icon: "⚡",
           tag: "COMBO",
+          category: "hair",
+        },
+        {
+          id: "grooming",
+          name: "Grooming Package",
+          dur: "1.5 hr",
+          minutes: 90,
+          price: 40,
+          icon: "👑",
+          tag: "PACKAGE",
+          category: "package",
+          includes: ["Hair Cut", "Beard", "Detan", "Scrub"],
         },
         {
           id: "detanscrub",
           name: "Detan Scrub",
           dur: "30 min",
+          minutes: 30,
           price: 25,
           icon: "◈",
+          category: "skin",
         },
-        { id: "detan", name: "Detan", dur: "15 min", price: 15, icon: "◇" },
-        { id: "scrub", name: "Scrub", dur: "15 min", price: 15, icon: "✷" },
+        {
+          id: "detan",
+          name: "Detan",
+          dur: "15 min",
+          minutes: 15,
+          price: 15,
+          icon: "◇",
+          category: "skin",
+        },
+        {
+          id: "scrub",
+          name: "Scrub",
+          dur: "15 min",
+          minutes: 15,
+          price: 15,
+          icon: "✷",
+          category: "skin",
+        },
         {
           id: "massage",
           name: "Head Massage",
           dur: "15 min",
+          minutes: 15,
           price: 15,
           icon: "☯",
+          category: "relax",
         },
       ];
+
+      /* Only Bobby now — "chair" framing since there's a single station. */
       const PROS = [
         {
           id: "any",
-          name: "Any Available",
-          tag: "Choose a service first",
+          name: "Next Available Chair",
+          tag: "Fastest option",
           code: "★",
         },
         {
-          id: "dilpreet",
-          name: "Dilpreet P.",
+          id: "bobby",
+          name: "Bobby S.",
           tag: "Available Today",
-          code: "DP",
+          code: "BP",
         },
-        { id: "lucky", name: "Lucky J.", tag: "Available Today", code: "LJ" },
-        { id: "vishal", name: "Vishal D.", tag: "Available Today", code: "VD" },
       ];
+
+      const CATEGORY_COPY = {
+        hair: "A dedicated haircut slot at Bobby's chair — quick in, quick out.",
+        beard: "Beard architecture at the chair, hot-towel primed.",
+        package:
+          "The full 90-minute chair session — Bobby blocks extra time so nothing is rushed.",
+        skin: "A skin-focused station booking — detan, scrub and massage share this bench.",
+        relax: "A relaxation slot at the treatment bench.",
+      };
+
       const DAYS = [
         { d: 11, label: "Sat", off: false },
         { d: 12, label: "Sun", off: false },
@@ -1841,6 +1897,10 @@
         time: null,
         guests: [],
       };
+
+      function currentService() {
+        return SERVICES.find((s) => s.id === state.service) || null;
+      }
 
       /* ---------- Router ---------- */
       function go(view) {
@@ -1929,17 +1989,20 @@
         setTimeout(() => scramble(el, final), 400);
       });
 
-      /* ---------- Magnetic hover on buttons ---------- */
-      document.querySelectorAll(".btn-crimson, .btn-ghost").forEach((b) => {
-        b.classList.add("magnet");
-        b.addEventListener("mousemove", (e) => {
-          const r = b.getBoundingClientRect();
-          const x = (e.clientX - r.left - r.width / 2) / r.width;
-          const y = (e.clientY - r.top - r.height / 2) / r.height;
-          b.style.transform = `translate(${x * 8}px, ${y * 8}px)`;
+      /* ---------- Magnetic hover on buttons (skipped on touch) ---------- */
+      const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
+      if (!isCoarsePointer) {
+        document.querySelectorAll(".btn-crimson, .btn-ghost").forEach((b) => {
+          b.classList.add("magnet");
+          b.addEventListener("mousemove", (e) => {
+            const r = b.getBoundingClientRect();
+            const x = (e.clientX - r.left - r.width / 2) / r.width;
+            const y = (e.clientY - r.top - r.height / 2) / r.height;
+            b.style.transform = `translate(${x * 8}px, ${y * 8}px)`;
+          });
+          b.addEventListener("mouseleave", () => (b.style.transform = ""));
         });
-        b.addEventListener("mouseleave", () => (b.style.transform = ""));
-      });
+      }
 
       /* ---------- MENU VIEW ---------- */
       const menuGrid = document.getElementById("menuGrid");
@@ -1948,12 +2011,13 @@
         menuGrid.innerHTML = SERVICES.map(
           (s) => `
     <button data-id="${s.id}" class="menu-card group text-left glass rounded-3xl p-6 card-hover relative overflow-hidden ${state.menuPicks.has(s.id) ? "neon-border" : ""}">
-      <div class="flex justify-between items-start">
+      <div class="flex justify-between items-start gap-2">
         <div class="font-mono text-[10px] text-crimson">// ${s.dur.toUpperCase()}</div>
-        ${s.tag ? `<div class="chip px-2 py-0.5 rounded-full font-mono text-[10px] text-white">${s.tag}</div>` : ""}
+        ${s.tag ? `<div class="chip px-2 py-0.5 rounded-full font-mono text-[10px] text-white shrink-0">${s.tag}</div>` : ""}
       </div>
       <div class="text-4xl mt-4 chrome-text">${s.icon}</div>
       <div class="font-display text-2xl chrome-text mt-3">${s.name.toUpperCase()}</div>
+      ${s.includes ? `<div class="text-white/50 text-sm mt-2">${s.includes.join(" · ")}</div>` : ""}
       <div class="mt-4 flex items-end justify-between">
         <div class="text-white/60 text-sm">CAD</div>
         <div class="font-display text-3xl ${state.menuPicks.has(s.id) ? "crimson-glow" : "chrome-text"}">$${s.price}</div>
@@ -1989,7 +2053,7 @@
       const STEP_LABELS = [
         "",
         "01 · SERVICE",
-        "02 · PROFESSIONAL",
+        "02 · CHAIR",
         "03 · CHRONOS",
         "04 · LEDGER",
       ];
@@ -2010,6 +2074,11 @@
           .classList.toggle("opacity-50", state.step === 1);
         document.getElementById("nextStep").textContent =
           state.step === 4 ? "CONFIRM →" : "CONTINUE →";
+        if (state.step === 2) renderPros();
+        if (state.step === 3) {
+          renderDays();
+          renderSlots();
+        }
         renderSummary();
       }
       document.getElementById("prevStep").onclick = () =>
@@ -2024,7 +2093,7 @@
           return;
         }
         if (state.step === 2 && !state.pro) {
-          pulseWarn("Choose a professional");
+          pulseWarn("Choose a chair");
           return;
         }
         if (state.step === 3 && !state.time) {
@@ -2050,12 +2119,12 @@
         grid.innerHTML = SERVICES.map(
           (s) => `
     <button data-id="${s.id}" class="svc text-left glass rounded-2xl p-5 card-hover ${state.service === s.id ? "neon-border" : ""}">
-      <div class="flex justify-between items-start">
+      <div class="flex justify-between items-start gap-3">
         <div>
           <div class="font-display text-lg chrome-text">${s.name}</div>
-          <div class="text-white/50 text-xs mt-1">${s.dur}</div>
+          <div class="text-white/50 text-xs mt-1">${s.dur}${s.includes ? " · " + s.includes.join(", ") : ""}</div>
         </div>
-        <div class="chip px-3 py-1 rounded-full font-mono text-xs">$${s.price}</div>
+        <div class="chip px-3 py-1 rounded-full font-mono text-xs shrink-0">$${s.price}</div>
       </div>
     </button>
   `,
@@ -2063,7 +2132,13 @@
         grid.querySelectorAll(".svc").forEach(
           (el) =>
             (el.onclick = () => {
+              const changed = state.service !== el.dataset.id;
               state.service = el.dataset.id;
+              if (changed) {
+                /* service category changed — reset downstream picks so
+           chair + chronos re-evaluate against the new service */
+                state.time = null;
+              }
               renderBookServices();
               renderSummary();
             }),
@@ -2071,8 +2146,15 @@
       }
       renderBookServices();
 
-      /* Step 2 */
+      /* Step 2 — options/copy shift based on the selected service's category */
       function renderPros() {
+        const svc = currentService();
+        const helper = document.getElementById("proHelper");
+        helper.textContent = svc
+          ? CATEGORY_COPY[svc.category] ||
+            "Pick who you'd like handling this session."
+          : "Pick a service first to see chair options.";
+
         const g = document.getElementById("bookPros");
         g.innerHTML = PROS.map(
           (p) => `
@@ -2096,9 +2178,15 @@
             }),
         );
       }
-      renderPros();
 
-      /* Step 3 */
+      /* Step 3 — longer services (combos / the Grooming Package) block out
+   more chair time, so fewer chronos slots are exposed as bookable. */
+      function slotStepFor(svc) {
+        if (!svc) return 1;
+        if (svc.minutes >= 90) return 3;
+        if (svc.minutes >= 60) return 2;
+        return 1;
+      }
       function renderDays() {
         const row = document.getElementById("dayRow");
         row.innerHTML = DAYS.map(
@@ -2117,22 +2205,30 @@
               renderSlots();
             }),
         );
-        document.getElementById("pickedDayLabel").textContent =
-          `Saturday · July ${state.day}, 2026 — ${SLOTS.length} slots`;
+        const svc = currentService();
+        const durHelper = document.getElementById("durHelper");
+        durHelper.textContent = svc
+          ? `JULY · 2026 · BRAMPTON.LOCAL — ${svc.dur.toUpperCase()} SESSION`
+          : "JULY · 2026 · BRAMPTON.LOCAL";
         const picked = DAYS.find((d) => d.d === state.day);
         if (picked)
           document.getElementById("pickedDayLabel").textContent =
             `${["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][(state.day + 3) % 7] || picked.label} · July ${state.day}, 2026`;
       }
       function renderSlots() {
+        const svc = currentService();
+        const step = slotStepFor(svc);
         const g = document.getElementById("slotGrid");
-        g.innerHTML = SLOTS.map(
-          (s, i) => `
-    <button data-t="${s}" class="slot hairline rounded-xl px-4 py-4 font-display text-sm text-white/80 flex items-center gap-2 ${state.time === s ? "on" : ""} ${i % 9 === 7 ? "off" : ""}">
-      <span class="opacity-60">${s.includes("am") || s === "12:30pm" ? "☀" : parseInt(s) >= 5 ? "☾" : "☀"}</span> ${s}
+        g.innerHTML = SLOTS.map((s, i) => {
+          const lunchBreak = i % 9 === 7;
+          const blockedByDuration = i % step !== 0;
+          const off = lunchBreak || blockedByDuration;
+          return `
+    <button data-t="${s}" class="slot hairline rounded-xl px-4 py-4 font-display text-sm text-white/80 flex items-center gap-2 ${state.time === s ? "on" : ""} ${off ? "off" : ""}">
+      <span class="opacity-60">${s.includes("am") || s === "12:30pm" ? "☀" : "☾"}</span> ${s}
     </button>
-  `,
-        ).join("");
+  `;
+        }).join("");
         g.querySelectorAll(".slot:not(.off)").forEach(
           (el) =>
             (el.onclick = () => {
@@ -2142,13 +2238,11 @@
             }),
         );
       }
-      renderDays();
-      renderSlots();
 
       /* Step 4 */
       function renderGuests() {
         const g = document.getElementById("orderGuests");
-        const main = SERVICES.find((s) => s.id === state.service);
+        const main = currentService();
         const proObj = PROS.find((p) => p.id === state.pro);
         const primary = `
     <div class="flex items-center gap-4 bg-white/5 rounded-2xl p-4">
@@ -2202,7 +2296,7 @@
 
       /* Summary pane */
       function renderSummary() {
-        const main = SERVICES.find((s) => s.id === state.service);
+        const main = currentService();
         const proObj = PROS.find((p) => p.id === state.pro);
         const lines = document.getElementById("summaryLines");
         const items = [];
@@ -2246,9 +2340,6 @@
       }
       renderGuests();
       renderSummary();
-
-      /* Watch for step change -> re-render step 4 */
-      const _setStep = setStep;
 
       function confirmBooking() {
         const btn = document.getElementById("confirmBtn");
@@ -2295,6 +2386,11 @@
         const v = location.hash.replace("#", "");
         if (document.getElementById("view-" + v)) go(v);
       }
+
+      /* Initial render for step-dependent booking panes */
+      renderPros();
+      renderDays();
+      renderSlots();
     </script>
   </body>
 </html>
